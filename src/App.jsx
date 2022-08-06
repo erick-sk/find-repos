@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Header from './components/Header';
 import Card from './components/Card';
 import Spinner from './components/Spinner';
 import Alert from './components/Alert';
@@ -63,8 +64,7 @@ function App() {
 
   return (
     <main className="mb-10">
-      <h1 className="my-4 text-4xl font-bold text-center">Find Repos</h1>
-
+      <Header />
       <form className="mx-auto w-full md:w-1/2 mb-4" onSubmit={handleSubmit}>
         <label
           htmlFor="default-search"
