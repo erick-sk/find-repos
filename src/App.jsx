@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import Card from './components/Card';
 import Spinner from './components/Spinner';
+import Alert from './components/Alert';
 
 function App() {
   // state
   const [username, setUsername] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   // call to api
   const fetchData = async () => {
@@ -16,13 +18,24 @@ function App() {
 
       const response = await fetch(url);
       const json = await response.json();
-      setData(json);
+
+      console.log(json);
+      if (json.length === 0) {
+        console.log(json);
+        setError('User not found');
+        setTimeout(() => {
+          setError('');
+          setData([]);
+        }, 4000);
+      } else {
+        setData(json);
+      }
     } catch (error) {
       console.log(error);
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 1500);
     }
   };
 
@@ -30,8 +43,23 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if ([username].includes('')) {
+      setError("Username can't be blank");
+
+      // delete alert
+      setTimeout(() => {
+        setError('');
+        setData([]);
+      }, 2000);
+
+      return;
+    }
+
     fetchData();
+    setUsername('');
   };
+
+  // errors
 
   return (
     <main className="mb-10">
@@ -69,7 +97,6 @@ function App() {
             value={username}
             className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search by username..."
-            required
           />
           <button
             type="submit"
@@ -84,11 +111,17 @@ function App() {
         {loading ? (
           <Spinner />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {data.map((info) => (
-              <Card key={info.id} info={info} />
-            ))}
-          </div>
+          <>
+            {error ? (
+              <Alert error={error} />
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {data.map((info) => (
+                  <Card key={info.id} info={info} />
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </main>
