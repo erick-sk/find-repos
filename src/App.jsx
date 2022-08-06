@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Card from './components/Card';
 
 function App() {
   // state
@@ -26,11 +27,11 @@ function App() {
   };
 
   return (
-    <main>
+    <main className="mb-10">
       <h1 className="my-4 text-4xl font-bold text-center">Find Repos</h1>
 
-      <div className="content">
-        <form onSubmit={handleSubmit}>
+      <div className="grid place-content-center">
+        <form className="mb-4" onSubmit={handleSubmit}>
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
@@ -73,9 +74,9 @@ function App() {
           </div>
         </form>
 
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {data.map((info) => (
-            <p>{info.name}</p>
+            <Card key={info.id} info={info} />
           ))}
         </div>
       </div>
