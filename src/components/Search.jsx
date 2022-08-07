@@ -1,4 +1,4 @@
-const Search = ({ username, setUsername, fetchData }) => {
+const Search = ({ username, setUsername, fetchData, setRepos, setError }) => {
   // handleSubmit
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,7 +9,7 @@ const Search = ({ username, setUsername, fetchData }) => {
       // delete alert
       setTimeout(() => {
         setError('');
-        setData([]);
+        setRepos([]);
       }, 2000);
 
       return;

@@ -8,7 +8,7 @@ import Alert from './components/Alert';
 function App() {
   // state
   const [username, setUsername] = useState('');
-  const [data, setData] = useState([]);
+  const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -27,10 +27,10 @@ function App() {
 
         setTimeout(() => {
           setError('');
-          setData([]);
+          setRepos([]);
         }, 4000);
       } else {
-        setData(json);
+        setRepos(json);
       }
     } catch (error) {
       console.log(error);
@@ -49,6 +49,8 @@ function App() {
         username={username}
         setUsername={setUsername}
         fetchData={fetchData}
+        setRepos={setRepos}
+        setError={setError}
       />
 
       <div className="grid place-content-center place-items-center">
@@ -60,8 +62,8 @@ function App() {
               <Alert error={error} />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {data.map((info) => (
-                  <Card key={info.id} info={info} />
+                {repos.map((repo) => (
+                  <Card key={repo.id} repo={repo} />
                 ))}
               </div>
             )}
