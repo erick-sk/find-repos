@@ -1,4 +1,11 @@
-const Search = ({ username, setUsername, fetchData, setRepos, setError }) => {
+const Search = ({
+  username,
+  setUsername,
+  fetchData,
+  setRepos,
+  setError,
+  setShowImage,
+}) => {
   // handleSubmit
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,7 +17,13 @@ const Search = ({ username, setUsername, fetchData, setRepos, setError }) => {
       setTimeout(() => {
         setError('');
         setRepos([]);
+
+        // set image
+        setShowImage(true);
       }, 3000);
+
+      // remove image
+      setShowImage(false);
 
       return;
     }
@@ -20,6 +33,8 @@ const Search = ({ username, setUsername, fetchData, setRepos, setError }) => {
 
     // clean text from search
     setUsername('');
+
+    setImage(false);
   };
 
   return (
