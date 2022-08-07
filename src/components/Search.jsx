@@ -6,16 +6,19 @@ const Search = ({ username, setUsername, fetchData, setRepos, setError }) => {
     if ([username].includes('')) {
       setError("Username can't be blank");
 
-      // delete alert
+      // delete alert and state from repos
       setTimeout(() => {
         setError('');
         setRepos([]);
-      }, 2000);
+      }, 3000);
 
       return;
     }
 
+    // call api
     fetchData();
+
+    // clean text from search
     setUsername('');
   };
 

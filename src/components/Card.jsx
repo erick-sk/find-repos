@@ -13,7 +13,7 @@ const Card = ({ repo }) => {
         </p>
 
         <p className="mb-3 font-bold text-gray-700 dark:text-gray-400">
-          Clone: {repo.git_url}
+          Clone project: <span className="underline">{repo.git_url}</span>
         </p>
 
         <a
@@ -22,7 +22,7 @@ const Card = ({ repo }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Read more
+          Go repo
           <svg
             aria-hidden="true"
             className="ml-2 -mr-1 w-4 h-4"

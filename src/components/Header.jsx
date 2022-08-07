@@ -1,7 +1,9 @@
 const Header = () => {
   return (
     <div className="flex justify-center items-center">
-      <h1 className="my-4 text-4xl font-bold mr-2">Find Repos</h1>
+      <h1 className="my-4 text-4xl font-bold mr-2">
+        <a href="/">Find Repos</a>
+      </h1>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6"

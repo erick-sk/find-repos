@@ -14,27 +14,33 @@ function App() {
 
   // call to api
   const fetchData = async () => {
+    // show loader
     setLoading(true);
 
     try {
+      // url api
       const url = `https://api.github.com/users/${username}/repos`;
 
       const response = await fetch(url);
       const json = await response.json();
 
       if (json.length === 0) {
+        // show error
         setError('User not found, try another...');
 
+        // delete error and state repos
         setTimeout(() => {
           setError('');
           setRepos([]);
         }, 4000);
       } else {
+        // set data from api
         setRepos(json);
       }
     } catch (error) {
       console.log(error);
     } finally {
+      // delete loader
       setTimeout(() => {
         setLoading(false);
       }, 1500);
