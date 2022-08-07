@@ -2,7 +2,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b2de422f-3658-4568-b13c-774edff7da7b/deploy-status)](https://app.netlify.com/sites/find-repos-erick-sk/deploys)
 
 Website where you can find information about all the repositories repositories on github. <br/>
-You can visit the project live site [here](find-repos-erick-sk.netlify.app).
+You can visit the project live site [here](https://www.find-repos-erick-sk.netlify.app).
 
 ## Installation
 
